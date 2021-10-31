@@ -102,6 +102,38 @@ def paginate_modules(page_n, module_dict, prefix, chat=None):
                 EqInlineKeyboardButton(
                     "❯",
                     callback_data="{}_next({})".format(prefix, modulo_page),
+      if mod_match:
+        module = mod_match.group(1)
+        text = (
+            "{} **{}**:\n".format(
+                "Here is the help for", HELPABLE[module].__MODULE__
+            )
+            + HELPABLE[module].__HELP__
+        )
+
+        await query.message.edit(
+            text=text,
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton("🔙 Back", callback_data="help_back")]]
+            ),
+            disable_web_page_preview=True,
+        )
+    elif home_match:
+        await app.send_message(
+            query.from_user.id,
+            text=home_text_pm,
+            reply_markup=home_keyboard_pm,
+        )
+        await query.message.delete()
+    elif prev_match:
+        curr_page = int(prev_match.group(1))
+        await query.message.edit(
+            text=top_text,
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(curr_page - 1, HELPABLE, "help")
+            ),
+            disable_web_page_preview=True,              
+                    
                 ),
             )
         ]
