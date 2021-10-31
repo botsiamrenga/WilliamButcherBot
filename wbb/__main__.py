@@ -67,7 +67,7 @@ async def start_bot():
             bot_modules += "|{:<15}".format(i)
         j += 1
     print("+===============================================================+")
-    print("|                              WBB                              |")
+    print("|                              Lynn                              |")
     print("+===============+===============+===============+===============+")
     print(bot_modules)
     print("+===============+===============+===============+===============+")
@@ -105,25 +105,25 @@ home_keyboard_pm = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(
-                text="Commands ❓", callback_data="bot_commands"
+                text="📚 Command", callback_data="bot_commands"
             ),
             InlineKeyboardButton(
-                text="Repo 🛠",
-                url="https://github.com/thehamkercat/WilliamButcherBot",
+                text="💬 support Group",
+                url="https://t.me/puituflynn",
             ),
         ],
         [
             InlineKeyboardButton(
-                text="System Stats 🖥",
+                text="💻 System Stats",
                 callback_data="stats_callback",
             ),
             InlineKeyboardButton(
-                text="Support 👨", url="http://t.me/WBBSupport"
+                text="🔔 Support channel", url="http://t.me/androidusersmizo"
             ),
         ],
         [
             InlineKeyboardButton(
-                text="Add Me To Your Group 🎉",
+                text="➕ Add Me To Your Group 🔘",
                 url=f"http://t.me/{BOT_USERNAME}?startgroup=new",
             )
         ],
@@ -131,8 +131,8 @@ home_keyboard_pm = InlineKeyboardMarkup(
 )
 
 home_text_pm = (
-    f"Hey there! My name is {BOT_NAME}. I can manage your "
-    + "group with lots of useful features, feel free to "
+   f"Hello! My name is {BOT_NAME}. Click command button below "
+    + "to see what i can do, feel free to "
     + "add me to your group."
 )
 
@@ -141,20 +141,20 @@ keyboard = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(
-                text="Help ❓",
+                text="📚 Command",
                 url=f"t.me/{BOT_USERNAME}?start=help",
             ),
             InlineKeyboardButton(
-                text="Repo 🛠",
-                url="https://github.com/thehamkercat/WilliamButcherBot",
+                text="💬 Support Group",
+                url="https://t.me/puituflynn",
             ),
         ],
         [
             InlineKeyboardButton(
-                text="System Stats 💻",
+                text="💻 System Stats",
                 callback_data="stats_callback",
             ),
-            InlineKeyboardButton(text="Support 👨", url="t.me/WBBSupport"),
+            InlineKeyboardButton(text="🔔 Support channel", url="t.me/androidusersmizo"),
         ],
     ]
 )
@@ -164,7 +164,7 @@ keyboard = InlineKeyboardMarkup(
 async def start(_, message):
     if message.chat.type != "private":
         return await message.reply(
-            "Pm Me For More Details.", reply_markup=keyboard
+            "Min hruatchian duh chuan Private ah minlo be rawh.", reply_markup=keyboard
         )
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
@@ -215,11 +215,11 @@ async def help_command(_, message):
                 )
             else:
                 await message.reply(
-                    "PM Me For More Details.", reply_markup=keyboard
+                    "Min hriatchian duh chuan private ah minlo be rawh.", reply_markup=keyboard
                 )
         else:
             await message.reply(
-                "Pm Me For More Details.", reply_markup=keyboard
+                "Min hriatchian duh chuan private ah minlo be rawh.", reply_markup=keyboard
             )
     else:
         if len(message.command) >= 2:
@@ -253,10 +253,8 @@ async def help_parser(name, keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return (
-        """Hello {first_name}, My name is {bot_name}.
-I'm a group management bot with some useful features.
-You can choose an option below, by clicking a button.
-Also you can ask anything in Support Group.
+        """Hello {first_name}, Kei hi {bot_name} ka ni a.
+I group enkawl tu atan min hmang thei ang.
 """.format(
             first_name=name,
             bot_name=BOT_NAME,
@@ -292,14 +290,8 @@ async def help_button(client, query):
     back_match = re.match(r"help_back", query.data)
     create_match = re.match(r"help_create", query.data)
     top_text = f"""
-Hello {query.from_user.first_name}, My name is {BOT_NAME}.
-I'm a group management bot with some usefule features.
-You can choose an option below, by clicking a button.
-Also you can ask anything in Support Group.
-
-General command are:
- - /start: Start the bot
- - /help: Give this message
+Hello {query.from_user.first_name}, ka hming chu {BOT_NAME} ani a.
+I group enkawl tu atan min hmang thei ang.
  """
     if mod_match:
         module = mod_match.group(1)
@@ -313,7 +305,7 @@ General command are:
         await query.message.edit(
             text=text,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("back", callback_data="help_back")]]
+                [[InlineKeyboardButton("🔙 Back", callback_data="help_back")]]
             ),
             disable_web_page_preview=True,
         )
