@@ -36,7 +36,7 @@ from wbb.utils.pastebin import paste
 
 __MODULE__ = "Misc"
 __HELP__ = """
-/asq
+/Lynn
     Ask a question
 
 /commit
