@@ -77,7 +77,7 @@ async def proxy_func(_, message: Message):
 **Proxy:** {proxy}
 **Location**: {location}
 
-**POWERED BY [ARQ](http://t.me/ARQUpdates)**""",
+**POWERED BY [Mizo Android Users](http://t.me/puituflynn)**""",
         reply_markup=keyb,
         disable_web_page_preview=True,
     )
