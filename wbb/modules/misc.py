@@ -91,7 +91,7 @@ __HELP__ = """
 ASQ_LOCK = Lock()
 
 
-@app.on_message(filters.command("asq") & ~filters.edited)
+@app.on_message(filters.command("Lynn") & ~filters.edited)
 async def asq(_, message):
     err = "Reply to text message or pass the question as argument"
     if message.reply_to_message:
@@ -133,7 +133,7 @@ async def runs(_, message):
 )
 @app.on_message(filters.command("id"))
 async def getid(client, message):
-    chat = message.chat
+    group_id = message.chat
     your_id = message.from_user.id
     message_id = message.message_id
     reply = message.reply_to_message
@@ -152,7 +152,7 @@ async def getid(client, message):
         except Exception:
             return await eor(message, text="This user doesn't exist.")
 
-    text += f"**[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
+    text += f"**[Group ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
     if not getattr(reply, "empty", True):
         text += (
             f"**[Replied Message ID:]({reply.link})** `{reply.message_id}`\n"
