@@ -1,18 +1,14 @@
 """
 MIT License
-
 Copyright (c) 2021 TheHamkerCat
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -80,7 +76,7 @@ def paginate_modules(page_n, module_dict, prefix, chat=None):
             )
         )
 
-    COLUMN_SIZE = 60
+    COLUMN_SIZE = 4
 
     max_num_pages = ceil(len(pairs) / COLUMN_SIZE)
     modulo_page = page_n % max_num_pages
@@ -102,38 +98,6 @@ def paginate_modules(page_n, module_dict, prefix, chat=None):
                 EqInlineKeyboardButton(
                     "❯",
                     callback_data="{}_next({})".format(prefix, modulo_page),
-      if mod_match:
-        module = mod_match.group(1)
-        text = (
-            "{} **{}**:\n".format(
-                "Here is the help for", HELPABLE[module].__MODULE__
-            )
-            + HELPABLE[module].__HELP__
-        )
-
-        await query.message.edit(
-            text=text,
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("🔙 Back", callback_data="help_back")]]
-            ),
-            disable_web_page_preview=True,
-        )
-    elif home_match:
-        await app.send_message(
-            query.from_user.id,
-            text=home_text_pm,
-            reply_markup=home_keyboard_pm,
-        )
-        await query.message.delete()
-    elif prev_match:
-        curr_page = int(prev_match.group(1))
-        await query.message.edit(
-            text=top_text,
-            reply_markup=InlineKeyboardMarkup(
-                paginate_modules(curr_page - 1, HELPABLE, "help")
-            ),
-            disable_web_page_preview=True,              
-                    
                 ),
             )
         ]
