@@ -128,12 +128,9 @@ async def runs(_, message):
     await message.reply_text((await random_line("wbb/utils/runs.txt")))
 
 
-@app2.on_message(
-    filters.command("id", prefixes=USERBOT_PREFIX) & filters.user(SUDOERS)
-)
 @app.on_message(filters.command("id"))
 async def getid(client, message):
-    group_id = message.chat
+    chat = message.chat
     your_id = message.from_user.id
     message_id = message.message_id
     reply = message.reply_to_message
@@ -152,7 +149,7 @@ async def getid(client, message):
         except Exception:
             return await eor(message, text="This user doesn't exist.")
 
-    text += f"**[Group ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
+    text += f"**[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
     if not getattr(reply, "empty", True):
         text += (
             f"**[Replied Message ID:]({reply.link})** `{reply.message_id}`\n"
