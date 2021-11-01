@@ -73,6 +73,9 @@ __HELP__ = """
 /carbon
     Make Carbon from code.
 
+/snd
+    Message like a bot.
+
 /tts
     Convert Text To Speech.
 
