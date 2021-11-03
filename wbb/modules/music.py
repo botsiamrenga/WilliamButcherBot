@@ -41,7 +41,7 @@ from wbb.utils.pastebin import paste
 __MODULE__ = "Music"
 __HELP__ = """
 /ytmusic [link] To Download Music From Various Websites Including Youtube. [SUDOERS]
-/saavn [query] To Download Music From Saavn.
+/song [query] To Download Music From youtube.
 /lyrics [query] To Get Lyrics Of A Song.
 """
 
@@ -144,7 +144,7 @@ async def download_song(url):
 # Jiosaavn Music
 
 
-@app.on_message(filters.command("saavn") & ~filters.edited)
+@app.on_message(filters.command("song") & ~filters.edited)
 @capture_err
 async def jssong(_, message):
     global is_downloading
